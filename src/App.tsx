@@ -1,12 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Button } from './components/Button/button';
 
 function App() {
   return (
     <div className="App">
+      <h1>Hello World</h1>
+      <h2>Hello World</h2>
+      <h3>Hello World</h3>
+      <hr />
+      <code>const a = b</code>
+      <Button size="lg" btnType="primary" className={"aaa"}>
+        Hello
+      </Button>
+
+      <Button href="https://baidu.com" btnType="link" size='sm' target='_blank'>
+        Baidu
+      </Button>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

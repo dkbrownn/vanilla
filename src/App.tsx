@@ -1,19 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from './components/Button/button';
 import { Alert } from './components/Alert/alert';
 import { Menu } from './components/Menu/menu';
 import { MenuItem } from './components/Menu/menuItem';
 import { SubMenu } from './components/Menu/subMenu';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { Icon } from './components/Icon/icon';
+import { Transition } from './components/Transition/transition';
+library.add(fas);
 function App() {
+  const [show, setShow] = useState(false)
   return (
     <div className="App">
       aaa
-      <h1>Hello World</h1>
-      <h2>Hello World</h2>
-      <h3>Hello World</h3>
+      <Button onClick={() => setShow((prv) => !prv)}>toggle</Button>
+      <Transition in={show} animation="zoom-in-top" timeout={300} wrapper>
+        <div>
+          <h1>Hello World</h1>
+          <h2>Hello World</h2>
+          <h3>Hello World</h3>
+        </div>
+        <Button btnType="primary">toggle</Button>
+      </Transition>
       <hr />
       <code style={{ display: "block" }}>const a = b</code>
-      <Menu defaultIndex={"2"} mode="vertical" defaultOpenSubMenus={["3"]} >
+      <Icon icon="envelope" theme="primary" />
+      <Icon icon="coffee" theme="secondary" />
+      <Icon icon="arrow-down" theme="info" />
+      <Menu defaultIndex={"2"} mode="vertical" defaultOpenSubMenus={["3"]}>
+        <MenuItem>cool link1</MenuItem>
+        <MenuItem disabled>cool link2</MenuItem>
+        <MenuItem>cool link3</MenuItem>
+        <SubMenu title="dropDown">
+          <MenuItem>dropDown1</MenuItem>
+          <MenuItem>dropDown2</MenuItem>
+          <MenuItem>dropDown3</MenuItem>
+        </SubMenu>
+      </Menu>
+      <Menu defaultIndex={"2"} defaultOpenSubMenus={["3"]}>
         <MenuItem>cool link1</MenuItem>
         <MenuItem disabled>cool link2</MenuItem>
         <MenuItem>cool link3</MenuItem>

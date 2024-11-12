@@ -1,0 +1,27 @@
+.alt {
+  position: relative;
+  padding: $alert-padding-y $alert-padding-x;
+  margin: $alert-margin;
+  border: $alert-border-width solid transparent;
+  border-radius: $alert-border-radius;
+  &.alt-default {
+    @include alert-style($primary, $primary, $white)
+  }
+  .alt-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: $alert-padding-y $alert-padding-x;
+    color: inherit;
+    cursor: pointer;
+  }
+  .alt-title {
+    font-weight: $font-weight-bold;
+    margin-bottom: 0;
+  }
+  .alt-desc {
+    font-size: $alert-description-font-size;
+    margin: $alert-description-top-margin 0 0;
+  }
+}
+

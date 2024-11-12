@@ -10,6 +10,7 @@
   background-image: none;
   border: $btn-border-width solid transparent;
   outline: none;
+  margin: 0 1rem;
   @include button-size( $btn-padding-y,  $btn-padding-x,  $btn-font-size,  $border-radius);
   box-shadow: $btn-box-shadow;
   cursor: pointer;

@@ -13,7 +13,7 @@ function App() {
       <h3>Hello World</h3>
       <hr />
       <code style={{ display: "block" }}>const a = b</code>
-      <Menu defaultIndex={"2"} mode="vertical" defaultOpenSubMenus={["3"]}>
+      <Menu defaultIndex={"2"} mode="vertical" defaultOpenSubMenus={["3"]} >
         <MenuItem>cool link1</MenuItem>
         <MenuItem disabled>cool link2</MenuItem>
         <MenuItem>cool link3</MenuItem>

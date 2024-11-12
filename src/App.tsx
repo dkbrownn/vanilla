@@ -3,6 +3,7 @@ import { Button } from './components/Button/button';
 import { Alert } from './components/Alert/alert';
 import { Menu } from './components/Menu/menu';
 import { MenuItem } from './components/Menu/menuItem';
+import { SubMenu } from './components/Menu/subMenu';
 function App() {
   return (
     <div className="App">
@@ -12,10 +13,15 @@ function App() {
       <h3>Hello World</h3>
       <hr />
       <code style={{ display: "block" }}>const a = b</code>
-      <Menu defaultIndex={2} mode="vertical">
-        <MenuItem index={0}>cool link1</MenuItem>
-        <MenuItem index={1} disabled>cool link2</MenuItem>
-        <MenuItem index={2}>cool link3</MenuItem>
+      <Menu defaultIndex={"2"} mode="vertical" defaultOpenSubMenus={["3"]}>
+        <MenuItem>cool link1</MenuItem>
+        <MenuItem disabled>cool link2</MenuItem>
+        <MenuItem>cool link3</MenuItem>
+        <SubMenu title="dropDown">
+          <MenuItem>dropDown1</MenuItem>
+          <MenuItem>dropDown2</MenuItem>
+          <MenuItem>dropDown3</MenuItem>
+        </SubMenu>
       </Menu>
       <Button size="lg" btnType="primary" disabled>
         Hello

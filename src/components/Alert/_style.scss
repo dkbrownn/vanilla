@@ -1,12 +1,16 @@
+$alert-colors: 
+(
+  "default": $primary,
+  "success": $success,
+  "warning": $warning,
+  "danger": $danger,
+);
 .alt {
   position: relative;
   padding: $alert-padding-y $alert-padding-x;
   margin: $alert-margin;
   border: $alert-border-width solid transparent;
   border-radius: $alert-border-radius;
-  &.alt-default {
-    @include alert-style($primary, $primary, $white)
-  }
   .alt-close {
     position: absolute;
     top: 0;
@@ -24,4 +28,8 @@
     margin: $alert-description-top-margin 0 0;
   }
 }
-
+@each $color, $value in $alert-colors {
+  .alt-#{$color} {
+    @include alert-style($value, darken($value, 5%), $white);
+  }
+}

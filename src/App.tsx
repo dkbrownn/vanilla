@@ -106,6 +106,9 @@ function App() {
       </Button>
       <Alert className="aaa" desc="111" />
       <Alert close={false} desc="111" title="hello" />
+      <Alert className="aaa" desc="111" alType="success"/>
+      <Alert className="aaa" desc="111" alType="danger" />
+      <Alert className="aaa" desc="111" alType="warning" />
     </div>
   );
 }

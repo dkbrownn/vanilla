@@ -8,6 +8,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from './components/Icon/icon';
 import { Transition } from './components/Transition/transition';
+import { Tabs } from './components/Tabs/tab';
+import { TabItem } from './components/Tabs/tabItem';
 library.add(fas);
 function App() {
   const [show, setShow] = useState(false)
@@ -24,6 +26,36 @@ function App() {
         <Button btnType="primary">toggle</Button>
       </Transition>
       <hr />
+      <Tabs>
+        <TabItem label={"tab1"}>1</TabItem>
+        <TabItem label={"tab2"} disabled>
+          2
+        </TabItem>
+        <TabItem label={"tab3"}>3</TabItem>
+      </Tabs>
+      <Tabs type="card">
+        <TabItem label={"tab1"}>1</TabItem>
+        <TabItem label={"tab2"} disabled>
+          2
+        </TabItem>
+        <TabItem label={"tab3"}>3</TabItem>
+      </Tabs>
+      <Tabs type="card">
+        <TabItem
+          label={
+            <span>
+              <Icon icon={"coffee"} size="sm"></Icon>
+              111
+            </span>
+          }
+        >
+          1
+        </TabItem>
+        <TabItem label={"tab2"} disabled>
+          2
+        </TabItem>
+        <TabItem label={"tab3"}>3</TabItem>
+      </Tabs>
       <code style={{ display: "block" }}>const a = b</code>
       <Icon icon="envelope" theme="primary" />
       <Icon icon="coffee" theme="secondary" />

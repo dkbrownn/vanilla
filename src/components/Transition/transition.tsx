@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 type AnimationName = 'zoom-in-top' | 'zoom-in-left' | 'zoom-in-bottom' | 'zoom-in-right'
@@ -16,6 +16,7 @@ export const Transition = ({
   unmountOnExit = true,
   ...restProps
 }: TransitionProps) => {
+
   return (
     <CSSTransition
       classNames={classNames ? classNames : animation}
@@ -23,7 +24,7 @@ export const Transition = ({
       unmountOnExit
       {...restProps}
     >
-     {wrapper ? <div>{children}</div> : children }
+      {wrapper ? <div>{children}</div> : children}
     </CSSTransition>
   );
 }

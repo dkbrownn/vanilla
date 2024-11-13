@@ -3,7 +3,6 @@ import classNames from "classnames";
 import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
 import { Icon } from "../Icon/icon";
-import { CSSTransition } from 'react-transition-group';
 import { Transition } from "../Transition/transition";
 
 interface SubMenuProps {

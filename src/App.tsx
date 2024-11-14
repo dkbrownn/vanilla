@@ -10,12 +10,17 @@ import { Icon } from './components/Icon/icon';
 import { Transition } from './components/Transition/transition';
 import { Tabs } from './components/Tabs/tab';
 import { TabItem } from './components/Tabs/tabItem';
+import { Input } from './components/Input/input';
 library.add(fas);
 function App() {
   const [show, setShow] = useState(false)
   return (
     <div className="App">
       aaa
+      <Input size='lg' placeholder='hello vanilla' icon= "search" />
+      <Input append={".com"}/>
+      <Input prepend={"https://"}/>
+      <Input disabled/>
       <Button onClick={() => setShow((prv) => !prv)}>toggle</Button>
       <Transition in={show} animation="zoom-in-top" timeout={300} wrapper>
         <div>

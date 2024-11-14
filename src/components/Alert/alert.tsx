@@ -3,11 +3,20 @@ import classNames from "classnames";
 import { Transition } from "../Transition/transition";
 export type AlertType = 'success' | 'default' | 'danger' | 'warning';
 interface AlertProps {
+  /** 自定义标题 */
   className?: string;
+  /**
+   * 是否可以手动关闭
+   * */
   close?: boolean;
+  /**
+   * 类型 四种可选 针对四种不同的场景
+   * */
   alType?: AlertType;
+  /** alert标题 */
   title?: string;
-  desc?: string
+  /** 内容描述 */
+  desc?: string;
 }
 // TODO 完善alert位置
 export const Alert = ({

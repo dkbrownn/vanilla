@@ -13,10 +13,9 @@ $alert-colors:
   border-radius: $alert-border-radius;
   .alt-close {
     position: absolute;
-    top: 50%;
+    top: 0;
     right: 0;
-    transform: translateY(-50%);
-    padding-right: .3rem;
+    padding: $alert-padding-y $alert-padding-x;
     color: inherit;
     cursor: pointer;
   }

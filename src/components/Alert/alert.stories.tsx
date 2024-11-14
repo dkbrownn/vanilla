@@ -4,7 +4,6 @@ const meta = {
   title: "Component/Alert",
   component: Alert,
   parameters: {
-    layout: "centered",
   },
 } satisfies Meta<typeof Alert>;
 export default meta;

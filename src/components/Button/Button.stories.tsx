@@ -2,7 +2,7 @@ import { StoryObj, Meta, StoryFn } from "@storybook/react/*";
 import { Button, ButtonProps } from "./button";
 import { action } from '@storybook/addon-actions'
 const meta = {
-  title: "Component/Button",
+  title: "Button组件",
   component: Button,
   parameters: {
     layout: "centered",
@@ -22,33 +22,36 @@ const Template: StoryFn<ButtonProps> = () => (
   </>
 );
 export const AllStyles = Template.bind({})
-export const Default: Story = {
+AllStyles.storyName = "全部样式的Button"
+export const TypeButton: StoryObj<typeof Button> = {
   args: {
-    btnType: "default",
-    children: "Default Button",
     size: "lg",
-    className: "default",
+
   },
-  render: (args) => (
-    <Button { ...args } onClick={action('clicked')}></Button>
+  render: () => (
+    <>
+      <Button btnType="default">Default Button</Button>
+      <Button btnType="primary">Primary Button</Button>
+      <Button btnType="danger">Danger Button</Button>
+      <Button btnType="link" href="https://baidu.com">Link Baidu</Button>
+      
+    </>
   )
-};
-export const Primary: Story = {
-  args: {
-    btnType: "primary",
-    children: "Primary Button",
-  },
-};
-export const Danger: Story = {
-  args: {
-    btnType: "danger",
-    children: "Danger Button",
-  },
-};
-export const Link: Story = {
-  args: {
-    btnType: "link",
-    children: "Link Button",
-    disabled: true,
-  },
-};
+}
+TypeButton.storyName = "不同类型的Button"
+
+export const SizeButton: StoryObj<typeof Button> = {
+  render: () => (
+    <>
+      <Button size="lg">Large Button</Button>
+      <Button size="sm">Small Button</Button>
+    </>
+  )
+}
+SizeButton.storyName = "不同大小的Button"
+export const DisabledButton: StoryObj<typeof Button> = {
+  render: () => (
+      <Button disabled>Disabled Button</Button>
+  )
+}
+DisabledButton.storyName = "可禁用的Button"

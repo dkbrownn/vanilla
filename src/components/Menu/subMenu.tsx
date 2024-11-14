@@ -7,7 +7,9 @@ import { Transition } from "../Transition/transition";
 
 interface SubMenuProps {
   index?: string;
+  /** 下拉菜单选项的内容 */
   title: string;
+  /** 下拉菜单选型的扩展类名 */
   className?: string;
   children?: React.ReactNode;
 }

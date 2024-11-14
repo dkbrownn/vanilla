@@ -4,14 +4,28 @@ import { TabItemProps } from "./tabItem";
 export type SelectCallback = (selectIndex: number) => void
 type tabsTypes = 'line' | 'card'
 export interface TabsProps {
-  defaultIndex?: number;// 默认显示选项卡
+  /** 当前激活 tab 面板的 index，默认为0 */
+  defaultIndex?: number;
+  /** 可以扩展的 className */
   className?: string;
+  /** abs的样式，两种可选，默认为 line */
   type?: tabsTypes;
+  /** 点击 Tab 触发的回调函数 */
   onSelect?: SelectCallback;
   children?: React.ReactNode;
 }
 // 使用react提供的Children.map() api实现对子节点的抽丝剥茧，将想要展示的部分抽离出来
-export const Tabs = ({
+
+/**
+ * 选项卡切换组件。
+ * 提供平级的区域将大块内容进行收纳和展现，保持界面整洁。
+ * ### 引用方法
+ * 
+ * ~~~js
+ * import { Tabs } from 'vanilla-react'
+ * ~~~
+ */
+export const Tabs: React.FC<TabsProps> = ({
   defaultIndex = 0,
   className,
   type = 'line',

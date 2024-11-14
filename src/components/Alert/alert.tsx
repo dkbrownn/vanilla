@@ -19,6 +19,13 @@ interface AlertProps {
   desc?: string;
 }
 // TODO 完善alert位置
+/**
+ *  用于页面中展示重要的提示信息。 点击右侧的叉提示自动消失
+ * ##引用方法
+ * ~~~js
+ * import { Alert } from "vanilla-react"
+ * ~~~
+ */
 export const Alert = ({
   className,
   close = true,

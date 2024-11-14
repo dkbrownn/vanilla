@@ -13,9 +13,12 @@ type Story = StoryObj<ButtonProps>;
 
 const Template: StoryFn<ButtonProps> = () => (
   <>
-    <Button btnType="default" size="lg">111</Button>
-    <Button btnType="danger" disabled>111</Button>
-    <Button btnType="primary">111</Button>
+    <Button >Default Button</Button>
+    <Button btnType="danger">Danger Button</Button>
+    <Button btnType="primary">Primary Button</Button>
+    <Button btnType="link" href="https://baidu.com" target="_blank">Link Baidu</Button>
+    <Button size="lg">Large Button</Button>
+    <Button size="sm">Small Button</Button>
   </>
 );
 export const AllStyles = Template.bind({})

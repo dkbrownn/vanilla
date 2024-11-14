@@ -3,8 +3,6 @@ import { Alert } from "./alert";
 const meta = {
   title: "Component/Alert",
   component: Alert,
-  parameters: {
-  },
 } satisfies Meta<typeof Alert>;
 export default meta;
 type Story = StoryObj<typeof Alert>;

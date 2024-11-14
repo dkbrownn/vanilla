@@ -6,10 +6,10 @@ const defaultProps = {
   onClick: jest.fn()
 }
 const testProps: ButtonProps = {
-  btnType: 'primary',
-  size: 'lg',
-  className: 'class'
-}
+  btnType: "primary",
+  size: "lg",
+  className: "class",
+};
 const disabledProps = {
   disabled: true,
   onClick: jest.fn()

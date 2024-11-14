@@ -14,7 +14,7 @@ export interface InputProps
   prepend?: string | ReactElement;
   /** 输入框后缀 */
   append?: string | ReactElement;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 /**
  * 
@@ -25,7 +25,6 @@ export const Input = ({
   prepend,
   append,
   disabled = false,
-  onChange,
   style,
   ...restProps
 }:InputProps) => {
@@ -36,17 +35,39 @@ export const Input = ({
     "input-group-append": !!append,
     "input-group-prepend": !!prepend,
   });
-
+  const fixControlledValue = (value: any) => {
+    if (typeof value === "undefined" || value === null) {
+      return "";
+    }
+    return value;
+  };
+  if ("value" in restProps) {
+    delete restProps.defaultValue;
+    restProps.value = fixControlledValue(restProps.value);
+  }
   return (
-    <div className={classes} style={style}>
-      {prepend && <div className="vanilla-input-group-prepend">{prepend}</div>}
+    <div className={classes} style={style} data-testid="test-wrapper">
+      {prepend && (
+        <div className="vanilla-input-group-prepend" data-testid="test-prepend">
+          {prepend}
+        </div>
+      )}
       {icon && (
-        <div className="icon-wrapper">
+        <div className="icon-wrapper" data-testid="test-icon">
           <Icon icon={icon} title={`title-${icon}`}></Icon>
         </div>
       )}
-      <input className="vanilla-input-inner" {...restProps} disabled={disabled}/>
-      {append && <div className="vanilla-input-group-append">{append}</div>}
+      <input
+        className="vanilla-input-inner"
+        {...restProps}
+        disabled={disabled}
+        data-testid="test-input"
+      />
+      {append && (
+        <div className="vanilla-input-group-append" data-testid="test-append">
+          {append}
+        </div>
+      )}
     </div>
   );
 }

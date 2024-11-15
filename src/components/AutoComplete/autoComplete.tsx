@@ -46,9 +46,9 @@ export const AutoComplete = ({
   const [hightLight, setHightLight] = useState(-1)
   console.log(suggestions)
   const renderSearchIcon = () => {
-    return <div className="vanilla-suggestions-loading-icon">{loading ? <Icon icon="spinner" spin /> : null}</div>
+    return <div className="suggestions-loading-icon">{loading ? <Icon icon="spinner" spin /> : null}</div>
   };
-  const debounceValue = useDebounce(inputValue, 1000);
+  const debounceValue = useDebounce(inputValue, 500);
 
   useClickOutside(componentRef, () => {
     setSuggestions([])
@@ -62,7 +62,8 @@ export const AutoComplete = ({
           setSuggestions(data);
         });
       } else {
-        setSuggestions(results);
+        setSuggestions(results)
+        setLoading(false)
       }
     } else {
       setSuggestions([])
@@ -74,9 +75,10 @@ export const AutoComplete = ({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim()
     setInputValue(value)
-    setLoading(true);
     setSuggestions([]);
     triggerSearch.current = true
+    if (!value) return 
+    setLoading(true)
   }
   const renderTmeplate = (item: DataSourceProps) => {
     return renderOptions ? renderOptions(item) : item.value;

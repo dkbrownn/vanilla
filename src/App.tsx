@@ -40,17 +40,33 @@ function App() {
   //   const item = lakers.filter((item) => item.value.includes(value))
   //   return item
   // } 
-  const handleSearch = (value: string) => {
-    console.log(value)
-    return fetch(`https://api.github.com/search/users?q=${value}`)
-      .then((res) => res.json())
-      .then(({ items }) => {
-        console.log(items);
-        return items?.slice(0, 10)?.map((item: any) => {
-          return { value: item.login, ...item };
-        });
+  // const handleSearch = (value: string) => {
+  //   console.log(value)
+  //   return fetch(`https://api.github.com/search/users?q=${value}`)
+  //     .then((res) => res.json())
+  //     .then(({ items }) => {
+  //       console.log(items);
+  //       return items?.slice(0, 10)?.map((item: any) => {
+  //         return { value: item.login, ...item };
+  //       });
+  //     });
+  // }; 
+
+const handleSearch = (value: string) => {
+  console.log(value);
+  return fetch(`https://api.github.com/search/users?q=${value}`)
+    .then((res) => res.json()
+      // TODO 解决错误边界
+      // } else Promise.reject(res.json())
+    )
+    .then(({ items }) => {
+      console.log(items);
+      return items?.slice(0, 10)?.map((item: any) => {
+        return { value: item.login, ...item };
       });
-  }; 
+    });
+};
+
   const renderOptions = (item: DataSourceProps) => {
     const itemWithNumber = item as DataSourceProps<GithubProps>;
     return (

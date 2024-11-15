@@ -94,7 +94,7 @@ export const AutoComplete = ({
   const generateDropdown = () => {
     
     return (
-      <ul className="vanilla-suggestion-list">
+      <ul className="vanilla-suggestion-list" data-tetsid="test-list">
         {suggestions?.map((item, index) => {
           const hightLightClasses = classNames("suggestion-item", {
             "is-active": hightLight === index,

@@ -11,16 +11,63 @@ import { Transition } from './components/Transition/transition';
 import { Tabs } from './components/Tabs/tab';
 import { TabItem } from './components/Tabs/tabItem';
 import { Input } from './components/Input/input';
+import { AutoComplete } from './components/AutoComplete/autoComplete';
+import { DataSourceProps } from './components/AutoComplete/autoComplete';
 library.add(fas);
+interface LakerPlayerProps {
+  value: string,
+  number: number,
+}
+interface GithubProps {
+  value: string,
+  url: string
+}
 function App() {
   const [show, setShow] = useState(false)
+  const lakers = [
+    { value: "bradley", number: 1 },
+    { value: "pope", number: 2 },
+    { value: "caruso", number: 3 },
+    { value: "cousins", number: 4 },
+    { value: "kuzma", number: 5 },
+    { value: "rando", number: 6 },
+    { value: "green", number: 7 },
+    { value: "brahowarddley", number: 8 },
+    { value: "AD", number: 9 },
+    { value: "james", number: 10 },
+  ];
+  // const handleSearch = (value: string) => {
+  //   const item = lakers.filter((item) => item.value.includes(value))
+  //   return item
+  // } 
+  const handleSearch = (value: string) => {
+    console.log(value)
+    return fetch(`https://api.github.com/search/users?q=${value}`)
+      .then((res) => res.json())
+      .then(({ items }) => {
+        console.log(items);
+        return items?.slice(0, 10)?.map((item: any) => {
+          return { value: item.login, ...item };
+        });
+      });
+  }; 
+  const renderOptions = (item: DataSourceProps) => {
+    const itemWithNumber = item as DataSourceProps<GithubProps>;
+    return (
+      <>
+        <h5>Name: {itemWithNumber.value}</h5>
+        <h5>url : {itemWithNumber.url}</h5>
+      </>
+    );
+  };
   return (
     <div className="App">
+      <AutoComplete fetchSuggestios={handleSearch} value={"AD"} renderOptions={renderOptions} />
       aaa
-      <Input size='lg' placeholder='hello vanilla' icon= "search" />
-      <Input append={".com"}/>
-      <Input prepend={"https://"}/>
-      <Input disabled/>
+      <Input size="lg" placeholder="hello vanilla" icon="search" />
+      <Input append={".com"} />
+      <Input prepend={"https://"} />
+      <Input disabled />
       <Button onClick={() => setShow((prv) => !prv)}>toggle</Button>
       <Transition in={show} animation="zoom-in-top" timeout={300} wrapper>
         <div>
@@ -111,7 +158,7 @@ function App() {
       </Button>
       <Alert className="aaa" desc="111" />
       <Alert close={false} desc="111" title="hello" />
-      <Alert className="aaa" desc="111" alType="success"/>
+      <Alert className="aaa" desc="111" alType="success" />
       <Alert className="aaa" desc="111" alType="danger" />
       <Alert className="aaa" desc="111" alType="warning" />
     </div>

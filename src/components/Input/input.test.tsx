@@ -1,8 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Input, InputProps } from "./input";
-import { Icon } from "../Icon/icon";
-
 
 const IconProps: InputProps = {
   icon: "coffee",

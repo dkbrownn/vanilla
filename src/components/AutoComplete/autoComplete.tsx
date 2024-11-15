@@ -65,7 +65,8 @@ export const AutoComplete = ({
         setSuggestions(results);
       }
     } else {
-      setSuggestions([]);
+      setSuggestions([])
+      setLoading(false)
     }
     triggerSearch.current = false
     setHightLight(-1);

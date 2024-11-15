@@ -22,11 +22,11 @@ interface DataSourceObject {
 // const obj: A = extra; // 不会报错
 export type DataSourceProps<T = {}> = T & DataSourceObject
 export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
-  /** 异步获取数据 */
+  /** 获取数据 */
   fetchSuggestios: (str: string) => DataSourceProps[] | Promise<DataSourceObject[]>;
-  /** 获取所选项 */
+  /** 点击所选项 */
   onSelect?: (item: DataSourceProps) => void;
-  /** 渲染容器 */
+  /** 自定义渲染结果 */
   renderOptions?: (item: DataSourceProps) => React.ReactElement;
 }
 export const AutoComplete = ({

@@ -46,7 +46,7 @@ export const AutoComplete = ({
   const [hightLight, setHightLight] = useState(-1)
   console.log(suggestions)
   const renderSearchIcon = () => {
-    return <>{loading ? <Icon icon="spinner" spin /> : null}</>
+    return <div className="vanilla-suggestions-loading-icon">{loading ? <Icon icon="spinner" spin /> : null}</div>
   };
   const debounceValue = useDebounce(inputValue, 1000);
 
@@ -91,10 +91,10 @@ export const AutoComplete = ({
   const generateDropdown = () => {
     
     return (
-      <ul>
+      <ul className="vanilla-suggestion-list">
         {suggestions?.map((item, index) => {
-          const hightLightClasses = classNames("suggestions-item", {
-            "is-hightlight": hightLight === index
+          const hightLightClasses = classNames("suggestion-item", {
+            "is-active": hightLight === index,
           });
           return <li className={hightLightClasses} key={index} onClick={() => handleClick(item)}>
             {renderTmeplate(item)}

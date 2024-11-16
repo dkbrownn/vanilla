@@ -2,7 +2,7 @@ import React from "react";
 import { Meta, StoryFn } from "@storybook/react/*";
 import { action } from '@storybook/addon-actions'
 import { Upload, UploadFile } from "./upload";
-const actionURL = "https://my-json-server.typicode.com/dkbrownn/demo/posts"
+const actionURL = "/api/posts"
 const meta = {
   title: "Upload组件",
   component: Upload
@@ -32,11 +32,14 @@ export const DefaultType: StoryFn<typeof Upload> = () => (
   <Upload 
   defultFileList={defaultFileList}
   action={actionURL}
-  beforeUpload={filePromise}
+  // beforeUpload={filePromise}
   // onProgress={action("progress")}
   // onError={action("error")}
   // onSuccess={action("success")}
   onChange={action("change")}
   onRemove={action("remove")}
+  name="fileName"
+  data={{"key": "value"}}
+  headers={{"X-Powered-By": "vanilla"}}
   ></Upload>
 )

@@ -18,6 +18,7 @@ export const DefaultType: StoryFn<typeof Select> = () => (
     <Option value="选项3"></Option>
   </Select>
 )
+DefaultType.storyName = "默认单选的Select"
 export const MultipleType: StoryFn<typeof Select> = () => (
   <Select placeholder="请选择" multiple>
     <Option value="选项1"></Option>
@@ -25,6 +26,7 @@ export const MultipleType: StoryFn<typeof Select> = () => (
     <Option value="选项3"></Option>
   </Select>
 )
+MultipleType.storyName = "多选的Select"
 export const DisabledType: StoryFn<typeof Select> = () => (
   <Select placeholder="该文本框已被禁用" multiple disabled>
     <Option value="选项1"></Option>
@@ -32,3 +34,4 @@ export const DisabledType: StoryFn<typeof Select> = () => (
     <Option value="选项2"></Option>
   </Select>
 )
+DisabledType.storyName = "禁用的Select"

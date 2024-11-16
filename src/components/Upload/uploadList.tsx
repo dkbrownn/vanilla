@@ -36,9 +36,9 @@ export const UploadList = ({
               {item.name}
             </span>
             <span className="file-status">
-              {item.status === "uploading" && <Icon icon="spinner" spin />}
-              {item.status === "success" && <Icon icon="check-circle" />}
-              {item.status === "error" && <Icon icon="times-circle" />}
+              {item.status === "uploading" && <Icon theme="primary" icon="spinner" spin />}
+              {item.status === "success" && <Icon theme="success" icon="check-circle" />}
+              {item.status === "error" && <Icon theme="danger" icon="times-circle" />}
             </span>
             <span className="file-actions">
               <Icon icon="times" onClick={() => onRemove(item)}/>

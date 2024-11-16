@@ -25,6 +25,7 @@ export const Progress = ({
   styles,
   theme = "primary"
 }: ProgressProps) => {
+  console.log("progress---")
   const outerRef = useRef<HTMLDivElement>(null)
   const innerRef = useRef<HTMLDivElement>(null)
   useEffect(() => {

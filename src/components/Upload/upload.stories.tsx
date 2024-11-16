@@ -41,5 +41,7 @@ export const DefaultType: StoryFn<typeof Upload> = () => (
   name="fileName"
   data={{"key": "value"}}
   headers={{"X-Powered-By": "vanilla"}}
+  accept=".jpg"
+  multiple
   ></Upload>
 )

@@ -30,7 +30,23 @@ export interface UploadProps {
   onError?: (err: any, file: File) => void;
   /** 上传成功后change事件 */
   onChange?: (file: File) => void;
-  onRemove?: (file: UploadFile) =>void
+  /** 删除时触发的函数 */
+  onRemove?: (file: UploadFile) => void;
+  /** 设置上传的请求头部 */
+  headers?: { [key: string]: any };
+  /** 上传的文件字段名 */
+  name?: string;
+  /** 上传时附带的额外参数 */
+  data?: { [key: string]: any };
+  /** 支持发送 cookie 凭证信息 */
+  withCredentials?: boolean;
+  /** 可选参数, 接受上传的文件类型 */
+  accept?: string;
+  /** 是否支持多选文件 */
+  multiple?: boolean;
+  /** 是否支持拖拽上传 */
+  drag?: boolean;
+  children?: React.ReactNode;
 }
 /**
  * 
@@ -38,6 +54,13 @@ export interface UploadProps {
 export const Upload = ({
   defultFileList,
   action,
+  headers,
+  name = "file",
+  data,
+  withCredentials,
+  accept,
+  multiple,
+  drag,
   beforeUpload,
   onError,
   onProgress,
@@ -52,7 +75,6 @@ export const Upload = ({
       fileRef.current.click()
     }
   }
-
   const updateFileList = (updateFile: UploadFile, updateObj: Partial<UploadFile>) => {
     setFileList(prevList => {
       return prevList.map(file => {
@@ -108,13 +130,22 @@ export const Upload = ({
       percent: 0,
       raw: file
     }
-    setFileList([_file, ...fileList])
-    const formData = new FormData();
-    formData.append(file.name, file);
+    setFileList(prvList => {
+      return [_file, ...prvList];
+    })
+    const formData = new FormData()
+    formData.append(name || "file", file)
+    if (data) {
+      Object.keys(data).forEach(key => {
+        formData.append(key, data[key])
+      })
+    }
     axios.post(action, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        ...headers,
       },
+      withCredentials,
       onUploadProgress: (e) => {
         if (e.total) {
           let percentage = Math.round((e.loaded * 100) / e.total) || 0;
@@ -157,6 +188,8 @@ console.log(fileList)
         ref={fileRef}
         type="file"
         onChange={handleChange}
+        accept={accept}
+        multiple={multiple}
       />
       {
         <UploadList onRemove={handleRemove} fileList={fileList || []}/>

@@ -157,37 +157,38 @@ export const Select = ({
           selectedValues.map((value, index) => <span key={index}>{value}</span>)
         )}
       </div>
-      <div className="viking-select-input">
+      <div className="vanilla-select-input">
         <Input
           ref={input}
           disabled={disabled}
           placeholder={placeholder}
           readOnly
+          value={value}
           name={name}
           icon={"angle-down"}
           onClick={handleClick}
         />
+        {multiple && (
+          <div className="vanilla-selected-tags">
+            {selectedValues.map((item, index) => {
+              return (
+                <span className="vanilla-tag" key={`tag-${index}`}>
+                  {item}
+                  <Icon
+                    icon={"times"}
+                    onClick={() => handleOptionClick(item, true)}
+                  />
+                </span>
+              );
+            })}
+          </div>
+        )}
       </div>
       <SelectContext.Provider value={passedContext}>
         <Transition in={menuOpen} timeout={300} animation="zoom-in-top">
           <ul className="vanilla-select-dropdown">{generateOptions()}</ul>
         </Transition>
       </SelectContext.Provider>
-      {multiple && (
-        <div className="vanilla-selected-tags">
-          {selectedValues.map((item, index) => {
-            return (
-              <span className="vanilla-tag" key={`tag-${index}`}>
-                {item}
-                <Icon
-                  icon={"times"}
-                  onClick={() => handleOptionClick(item, true)}
-                />
-              </span>
-            );
-          })}
-        </div>
-      )}
     </div>
   );
 }

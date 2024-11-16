@@ -26,7 +26,7 @@ export const Option = ({
   const isSelected = selectedValues.includes(value)
   const classes = classNames("vanilla-select-option", {
     "is-disabled": disabled,
-    "is-select": isSelected,
+    "is-selected": isSelected,
   })
   const handleClick = (e: React.MouseEvent, value: string, isSelected: boolean) => {
     e.preventDefault()
@@ -41,7 +41,7 @@ export const Option = ({
       onClick={(e) => handleClick(e, value, isSelected)}
     >
       {children || (label ? label : value)}
-      {multiple && isSelected && <Icon icon={"check"} className="icon-check" />}
+      {!disabled && multiple && isSelected && <Icon icon={"check"} className="icon-check" />}
     </li>
   );
 }

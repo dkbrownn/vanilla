@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactElement } from "react";
+import React, { ChangeEvent, forwardRef, ReactElement } from "react";
 import classNames from "classnames";
 import { IconProp } from "@fortawesome/fontawesome-svg-core"; 
 import { Icon } from "../Icon/icon";
@@ -19,7 +19,7 @@ export interface InputProps
 /**
  * 
  */
-export const Input = ({
+export const Input = forwardRef<HTMLInputElement, InputProps>(({
   size,
   icon,
   prepend,
@@ -27,7 +27,7 @@ export const Input = ({
   disabled = false,
   style,
   ...restProps
-}:InputProps) => {
+}, ref) => {
   const classes = classNames("vanilla-input-wrapper", {
     "is-disabled": disabled,
     [`input-size-${size}`]: size,
@@ -58,6 +58,7 @@ export const Input = ({
         </div>
       )}
       <input
+      ref={ref}
         className="vanilla-input-inner"
         {...restProps}
         disabled={disabled}
@@ -70,4 +71,4 @@ export const Input = ({
       )}
     </div>
   );
-}
+})

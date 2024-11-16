@@ -13,6 +13,8 @@ import { TabItem } from "./components/Tabs/tabItem";
 import { Input } from "./components/Input/input";
 import { AutoComplete } from "./components/AutoComplete/autoComplete";
 import { DataSourceProps } from "./components/AutoComplete/autoComplete";
+import { Select } from "./components/Select/select";
+import { Option } from "./components/Select/option";
 library.add(fas);
 interface LakerPlayerProps {
   value: string;
@@ -79,6 +81,16 @@ export function Entrance() {
   };
   return (
     <div className="App">
+      <Select defaultValue={["1"]}>
+        <Option value="1"></Option>
+        <Option value="2"></Option>
+        <Option value="3"></Option>
+      </Select>
+      <Select defaultValue={["1"]} placeholder="111" multiple>
+        <Option value="1"></Option>
+        <Option value="3"></Option>
+        <Option value="3"></Option>
+      </Select>
       <AutoComplete
         fetchSuggestios={handleSearch}
         value={"AD"}

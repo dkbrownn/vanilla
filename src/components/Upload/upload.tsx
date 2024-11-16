@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import axios from "axios"
 import { Button } from "../Button/button";
 import { UploadList } from "./uploadList";
+import { Dragger } from "./dragger";
 
 export type UploadStatus = "ready" | "uploading" | "success" | "error";
 
@@ -66,7 +67,8 @@ export const Upload = ({
   onProgress,
   onSuccess,
   onChange,
-  onRemove
+  onRemove,
+  children
 }: UploadProps) => {
   const fileRef = useRef<HTMLInputElement>(null)
   const [fileList, setFileList] = useState<UploadFile[]>(defultFileList || [])
@@ -179,9 +181,15 @@ export const Upload = ({
 console.log(fileList)
   return (
     <div className="vanilla-upload-component">
-      <Button btnType="primary" onClick={handleClick}>
-        Upload file
-      </Button>
+      {drag ? (
+        <Dragger onClick={handleClick} onFile={(files) => uploadFiles(files)}>
+          {children}
+        </Dragger>
+      ) : (
+        <Button btnType="primary" onClick={handleClick}>
+          {children}
+        </Button>
+      )}
       <input
         className="vanilla-file-input"
         style={{ display: "none" }}
@@ -191,9 +199,7 @@ console.log(fileList)
         accept={accept}
         multiple={multiple}
       />
-      {
-        <UploadList onRemove={handleRemove} fileList={fileList || []}/>
-      }
+      {<UploadList onRemove={handleRemove} fileList={fileList || []} />}
     </div>
   );  
 }

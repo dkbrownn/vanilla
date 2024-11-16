@@ -2,8 +2,6 @@ import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import { Select } from "./select";
 import { Option } from "./option";
-import { Icon } from "../Icon/icon";
-
 const meta = {
   title: "Select组件",
   component: Select,

@@ -1,6 +1,7 @@
 import React from "react";
 import { UploadFile } from "./upload";
 import { Icon } from "../Icon/icon";
+import { Progress } from "../Progress/progress";
 interface UploadListProps {
   /** 上传文件数组 */
   fileList: UploadFile[];
@@ -42,6 +43,7 @@ export const UploadList = ({
             <span className="file-actions">
               <Icon icon="times" onClick={() => onRemove(item)}/>
             </span>
+            {item.status === "uploading" && <Progress percent={item.percent || 0}/>}
           </li>
         );
       })}

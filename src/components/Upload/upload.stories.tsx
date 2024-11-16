@@ -9,7 +9,7 @@ const meta = {
 } satisfies Meta<typeof Upload>
 
 const defaultFileList: UploadFile[] = [
-  { uid: "123", size: 123, name: "h.md", status: "uploading"},
+  { uid: "123", size: 123, name: "h.md", status: "uploading", percent: 30},
   { uid: "1235", size: 1235, name: "hy.md", status: "error"},
   { uid: "1239", size: 1239, name: "hyx.md", status: "success"}
 ]

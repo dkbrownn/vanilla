@@ -16,7 +16,7 @@ export const UploadList = ({
   return (
     <ul style={{
       padding: "0"
-    }}>
+    }} data-testid="test-list">
       {fileList.map((item) => {
         return (
           <li
@@ -33,17 +33,25 @@ export const UploadList = ({
                 icon={"file-alt"}
                 theme="secondary"
               />
-              {item.name}
+              <span>{item.name}</span>
             </span>
             <span className="file-status">
-              {item.status === "uploading" && <Icon theme="primary" icon="spinner" spin />}
-              {item.status === "success" && <Icon theme="success" icon="check-circle" />}
-              {item.status === "error" && <Icon theme="danger" icon="times-circle" />}
+              {item.status === "uploading" && (
+                <Icon theme="primary" icon="spinner" spin />
+              )}
+              {item.status === "success" && (
+                <Icon theme="success" icon="check-circle" />
+              )}
+              {item.status === "error" && (
+                <Icon theme="danger" icon="times-circle" />
+              )}
             </span>
             <span className="file-actions">
-              <Icon icon="times" onClick={() => onRemove(item)}/>
+              <Icon icon="times" onClick={() => onRemove(item)} />
             </span>
-            {item.status === "uploading" && <Progress percent={item.percent || 0}/>}
+            {item.status === "uploading" && (
+              <Progress percent={item.percent || 0} />
+            )}
           </li>
         );
       })}

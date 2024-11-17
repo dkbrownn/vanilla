@@ -142,41 +142,45 @@ export const Upload = ({
         formData.append(key, data[key])
       })
     }
-    axios.post(action, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        ...headers,
-      },
-      withCredentials,
-      onUploadProgress: (e) => {
-        if (e.total) {
-          let percentage = Math.round((e.loaded * 100) / e.total) || 0;
-          if (percentage < 100) {
-            updateFileList(_file, {percent: percentage, status: 'uploading'})
-            if (onProgress) onProgress(percentage, file);
+    axios
+      .post(action, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          ...headers,
+        },
+        withCredentials,
+        onUploadProgress: (e) => {
+          if (e.total) {
+            let percentage = Math.round((e.loaded * 100) / e.total) || 0;
+            if (percentage < 100) {
+              updateFileList(_file, {
+                percent: percentage,
+                status: "uploading",
+              });
+              if (onProgress) onProgress(percentage, file);
+            }
           }
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        updateFileList(_file, { status: "success", response: res.data });
+        if (onSuccess) {
+          onSuccess(res.data, file);
         }
-      },
-    })
-    .then((res) => {
-      console.log(res)
-      updateFileList(_file, { status: "success", response: res.data })
-      if (onSuccess) {
-        onSuccess(res.data, file)
-      }
-      if (onChange) {
-        onChange(file)
-      }
-    })
-    .catch((err) => {
-      updateFileList(_file, { status: "error", error: err})
-      if (onError) {
-        onError(err, file);
-      }
-      if (onChange) {
-        onChange(file);
-      }
-    });
+        if (onChange) {
+          onChange(file);
+        }
+      })
+      .catch((err) => {
+        updateFileList(_file, { status: "error", error: err });
+        if (onError) {
+          onError(err, file);
+        }
+        if (onChange) {
+          onChange(file);
+        }
+      });
 }
 console.log(fileList)
   return (
@@ -198,8 +202,9 @@ console.log(fileList)
         onChange={handleChange}
         accept={accept}
         multiple={multiple}
+        data-testid="test-input"
       />
-      {<UploadList onRemove={handleRemove} fileList={fileList || []} />}
+      <UploadList onRemove={handleRemove} fileList={fileList || []} />
     </div>
   );  
 }

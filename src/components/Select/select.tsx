@@ -22,6 +22,8 @@ export interface SelectProps {
   multiple?: boolean;
   /** select input 的 name 属性	 */
   name?: string;
+  /** 是否展示当前值 */
+  isShow?: boolean;
   /** 选中值发生变化时触发 */
   onChange?: (selectedValue: string, selectedValues: string[]) => void;
   /** 下拉框出现/隐藏时触发 */
@@ -53,6 +55,7 @@ export const Select = ({
   disabled,
   multiple,
   name,
+  isShow = false,
   onChange,
   onVisibleChange,
   children
@@ -144,10 +147,10 @@ export const Select = ({
   }
   return (
     <div className={wrapperClasses} ref={containerRef}>
-      <div
+      { isShow && <div
         className="show-wrapper"
         style={{
-          padding: "1rem",
+          padding: ".5rem",
         }}
       >
         当前值：
@@ -156,7 +159,7 @@ export const Select = ({
         ) : (
           selectedValues.map((value, index) => <span key={index}>{value}</span>)
         )}
-      </div>
+      </div>}
       <div className="vanilla-select-input">
         <Input
           ref={input}

@@ -6,6 +6,8 @@ import { Input } from "../Input/input";
 import { Button } from "../Button/button";
 import { useRef } from "react";
 import { IFormRef } from "./form";
+import { Select } from "../Select/select";
+import { Option } from "../Select/option";
 const meta = {
   title: "Form组件",
   component: Form,
@@ -39,46 +41,58 @@ const confirmRules: CustomRule[] = [
   })
 ]
 export const DefaultType: StoryFn<typeof Form> = () => {
-  const ref = useRef<IFormRef>(null)
+  return (
+  <Form initialValues={{user: "vanilla", agreement: false}}>
+    <FormItem label="email" name="email" rules={[{type: "email", required: true}]}>
+      <Input/>
+    </FormItem>
+    <FormItem label="password" name="password" rules={[{type: "string", required: true, min: 3, max: 8}]}>
+      <Input type="password"/>
+    </FormItem>
+    <FormItem label="confirm" name="confirmPassword" rules={confirmRules}>
+      <Input type="password"/>
+    </FormItem>
+    <div className="vanilla-form-submit-area">
+      <Button type="submit" btnType="primary">登陆</Button>
+    </div>
+  </Form>
+)}
+DefaultType.storyName = "默认的样式的Form"
+export const SelectType: StoryFn<typeof Form> = () => {
+  return (
+  <Form initialValues={{user: "vanilla", agreement: false}}>
+    <FormItem label="username" name="username" rules={[{type: "string", required: true}]}>
+      <Input/>
+    </FormItem>
+    <FormItem label="password" name="password" rules={[{type: "string", required: true, min: 3, max: 8}]}>
+      <Input type="password"/>
+    </FormItem>
+    <FormItem label="confirm" name="confirmPassword" rules={confirmRules}>
+      <Input type="password"/>
+    </FormItem>
+     <FormItem label="性别" name="gender"  rules={[{type: 'string',required: true }]}
+        getValueFromEvent={(e) => e }
+        valuePropName='defaultValue'>
+      <Select placeholder="请选择性别">
+      <Option value="男" />
+      <Option  value="女" />
+     </Select>
+     </FormItem>
+    <div className="vanilla-form-submit-area">
+      <Button type="submit" btnType="primary">登陆</Button>
+    </div>
+  </Form>
+)}
 
+SelectType.storyName = "支持多种item的Form"
+export const FuncType: StoryFn<typeof Form> = () => {
+  const ref = useRef<IFormRef>(null)
   const resetAll = () => {
     console.log(ref.current?.getFieldValue("user"))
     console.log(ref.current?.reset())
   }
   return (
   <Form initialValues={{user: "vanilla", agreement: false}} ref={ref}>
-    <FormItem label="user" name="user" rules={[{type: "email", required: true}]}>
-      <Input/>
-    </FormItem>
-    <FormItem label="password" name="password" rules={[{type: "string", required: true, min: 3, max: 8}]}>
-      <Input type="password"/>
-    </FormItem>
-    <FormItem label="重复密码" name="confirmPassword" rules={confirmRules}>
-      <Input type="password"/>
-    </FormItem>
-    {/* <FormItem name="no-label">
-      <Input placeholder="no-label"/>
-    </FormItem> */}
-    {/* <div className="agreement-section" style={{
-      display: "flex", justifyContent: "center",
-    }}>
-      <FormItem name="checkbox">
-        <input type="checkbox" />
-      </FormItem>
-      <span className="agree-text">注册即代表同意<a href="#">用户协议</a></span>
-    </div> */}
-     <FormItem name="agreement" valuePropName="checked" getValueFromEvent={(e) => e.target.checked} rules={[{ type: 'enum', enum: [true], message: '请同意协议'}]}>
-        <input type="checkbox" />
-      </FormItem>
-    <div className="vanilla-form-submit-area">
-      <Button type="submit" btnType="primary">登陆</Button>
-      <Button type="button" btnType="primary" onClick={resetAll}>重置</Button>
-    </div>
-  </Form>
-)}
-
-export const FuncType: StoryFn<typeof Form> = () => (
-  <Form initialValues={{user: "vanilla", checkbox: true}}>
     {
       ({ isVaild, isSubmiting}) => (
         <>
@@ -88,18 +102,24 @@ export const FuncType: StoryFn<typeof Form> = () => (
           <FormItem label="password" name="password" rules={[{type: "string", required: true, min: 3, max: 8}]}>
             <Input type="password"/>
           </FormItem>
-          <FormItem label="重复密码" name="confirmPassword" rules={confirmRules}>
+          <FormItem label="confirm" name="confirmPassword" rules={confirmRules}>
             <Input type="password"/>
           </FormItem>
+          <div className='agreement-section' style={{ 'display': 'flex', 'justifyContent': 'center'}}>
+            <FormItem name="agreement" valuePropName="checked" getValueFromEvent={(e) => e.target.checked} rules={[{ type: 'enum', enum: [true], message: '请同意协议'}]}>
+              <input type="checkbox" />
+            </FormItem>
+            <span className="agree-text">注册即代表同意<a href="#">用户协议</a></span>
+          </div>
           <div className="vanilla-form-submit-area">
             <Button type="submit" btnType="primary">登陆
-              {
-              isSubmiting ? <span>验证中</span> : isVaild ?<span>通过</span> : <span>失败</span>
-              } 
+              {isSubmiting ? '验证中' : '验证完毕'} {isVaild ? '通过😄' : '没通过😢'}
             </Button>
+            <Button type="button" btnType="primary" onClick={resetAll}>重置</Button>
           </div>
         </>
       )
     }
   </Form>
-)
+)}
+FuncType.storyName = "支持调用表单实例的Form"

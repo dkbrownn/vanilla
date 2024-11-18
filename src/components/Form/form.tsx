@@ -4,11 +4,14 @@ import { ValidateError } from "async-validator";
 import { FormState } from "./useStore";
 export type RenderProps = (form: FormState) => React.ReactNode;
 export interface FormProps {
-  /**  */
+  /** 表单名称，会作为表单字段 id 前缀使用 */
   name?: string;
+  /** 表单默认值，只有初始化以及重置时生效 */
   initialValues?: Record<string, any>;
   children?: ReactNode | RenderProps;
+  /** 提交表单且数据验证成功后回调事件 */
   onFinsh?: (values: Record<string, any>) => void;
+  /** 提交表单且数据验证失败后回调事件 */
   onFinshFailed?: (values: Record<string, any>, errors: ValidateError) => void;
 }
 export type IFormContext = Pick<
@@ -61,7 +64,7 @@ export const Form = forwardRef<IFormRef, FormProps>(
     };
     let childrenNode: ReactNode;
     if (typeof children === "function") {
-      childrenNode = children(form as any);
+      childrenNode = children(form);
     } else {
       childrenNode = children;
     }
@@ -76,10 +79,6 @@ export const Form = forwardRef<IFormRef, FormProps>(
             {childrenNode}
           </formContext.Provider>
         </form>
-        <div>
-          <pre style={{ whiteSpace: "pre-wrap" }}>{JSON.stringify(fields)}</pre>
-          <pre style={{ whiteSpace: "pre-wrap" }}>{JSON.stringify(form)}</pre>
-        </div>
       </>
     );
   }

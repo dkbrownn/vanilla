@@ -1,7 +1,6 @@
 .vanilla-form {
   .vanilla-row {
     display: flex;
-    margin-bottom: 25px;
     &.vanilla-row-no-label {
       flex-direction: row-reverse;
     }
@@ -13,7 +12,7 @@
         margin-bottom: 0;
       }
       >label.vanilla-form-item-required:before {
-        display: flex;
+        display: inline-block;
         margin-right: 4px;
         color: $danger;
         font-size: 14px;
@@ -24,8 +23,13 @@
     }
     .vanilla-form-item {
       flex-basis: 70%;
+      position: relative;
       .vanilla-input-wrapper {
         border: none;
+        margin-bottom: 0;
+      }
+      .vanilla-form-item-control {
+        margin-bottom: 25px;
       }
       .vanilla-form-item-has-error.vanilla-form-item-control {
         .vanilla-input-inner {
@@ -37,9 +41,9 @@
       }
       .vanilla-form-item-explain {
         position: relative;
-        bottom: -25px;
+        top: -13px;
         left: 0;
-        line-height: 25px;
+        line-height: 7px;
         color: $danger;
       }
     }

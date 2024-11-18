@@ -1,7 +1,6 @@
 .vanilla-form {
   .vanilla-row {
     display: flex;
-    align-items: center;
     margin-bottom: 25px;
     &.vanilla-row-no-label {
       flex-direction: row-reverse;
@@ -13,11 +12,35 @@
       >label {
         margin-bottom: 0;
       }
+      >label.vanilla-form-item-required:before {
+        display: flex;
+        margin-right: 4px;
+        color: $danger;
+        font-size: 14px;
+        font-family: SimSun, sans-serif;
+        line-height: 1;
+        content: "*"
+      }
     }
     .vanilla-form-item {
       flex-basis: 70%;
       .vanilla-input-wrapper {
         border: none;
+      }
+      .vanilla-form-item-has-error.vanilla-form-item-control {
+        .vanilla-input-inner {
+          border: 1px solid $danger;
+          &:focus {
+            box-shadow: $input-focus-box-shadow-error;
+          }
+        }
+      }
+      .vanilla-form-item-explain {
+        position: relative;
+        bottom: -25px;
+        left: 0;
+        line-height: 25px;
+        color: $danger;
       }
     }
   }

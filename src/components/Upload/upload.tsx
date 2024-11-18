@@ -150,8 +150,10 @@ export const Upload = ({
         },
         withCredentials,
         onUploadProgress: (e) => {
+          console.log(`total: ${e.total}, loaded: ${e.loaded}`)
           if (e.total) {
             let percentage = Math.round((e.loaded * 100) / e.total) || 0;
+            console.log(percentage)
             if (percentage < 100) {
               updateFileList(_file, {
                 percent: percentage,

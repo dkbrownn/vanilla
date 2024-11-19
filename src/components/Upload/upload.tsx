@@ -206,7 +206,11 @@ console.log(fileList)
         multiple={multiple}
         data-testid="test-input"
       />
-      <UploadList onRemove={handleRemove} fileList={fileList || []} />
+      <UploadList
+        onRemove={handleRemove}
+        fileList={fileList}
+        data-testid="test-list"
+      />
     </div>
   );  
 }

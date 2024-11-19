@@ -35,9 +35,9 @@ export const Icon = ({
   className,
   ...restProps
 }: IconProps) => {
-  const classes = classNames('icon', className, {
-    [`icon-${theme}`]: theme
-  })
+  const classes = classNames("vanilla-icon", className, {
+    [`vanilla-icon-${theme}`]: theme,
+  });
   return <FontAwesomeIcon className={classes} {...restProps}/>
   
 }

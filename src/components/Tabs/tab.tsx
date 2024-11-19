@@ -33,9 +33,9 @@ export const Tabs: React.FC<TabsProps> = ({
   onSelect
 }:TabsProps) => {
   const [activeIndex, setIndex] = useState(defaultIndex)
-  const navClasses = classNames('tabs-nav', {
-    [`tabs-nav-${type}`]: type
-  })
+  const navClasses = classNames("vanilla-tabs-nav", {
+    [`tabs-nav-${type}`]: type,
+  });
 
   const handleClick = (e: React.MouseEvent, index: number, disabled: boolean | undefined ) => {
     e.preventDefault()
@@ -73,7 +73,7 @@ export const Tabs: React.FC<TabsProps> = ({
   return (
     <div className={`tabs ${className}`}>
       <ul className={navClasses}>{renderNavLinks()}</ul>
-      <div className="tabs-content">{renderContent()}</div>
+      <div className="vanilla-tabs-content">{renderContent()}</div>
     </div>
   );
 }

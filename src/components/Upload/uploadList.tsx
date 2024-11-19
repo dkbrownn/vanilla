@@ -16,14 +16,10 @@ export const UploadList = ({
   return (
     <ul style={{
       padding: "0"
-    }} data-testid="test-list">
+    }}>
       {fileList.map((item) => {
         return (
           <li
-            style={{
-              listStyle: "none",
-              padding: ".1rem 0",
-            }}
             className="vanilla-upload-list-item"
             key={item.uid}
           >

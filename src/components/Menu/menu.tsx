@@ -36,7 +36,7 @@ export const Menu = ({
   defaultOpenSubMenus = []
 }: MenuProps) => {
   const [currentActive, setActive] = useState(defaultIndex);
-  const classes = classNames("menu", className, {
+  const classes = classNames("vanilla-menu", className, {
     [`menu-${mode}`]: mode,
   });
 

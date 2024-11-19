@@ -22,7 +22,7 @@ describe('test Button Components', () => {
     expect(element.disabled).not.toBeTruthy();
     expect(element).toBeInTheDocument(); // 是否在文档中
     expect(element.tagName).toEqual("BUTTON");
-    expect(element).toHaveClass("btn btn-default");
+    expect(element).toHaveClass("vanilla-btn vanilla-btn-default");
     fireEvent.click(element);// mock 点击
     expect(defaultProps.onClick).toHaveBeenCalled() // 是否被调用
   })
@@ -30,14 +30,16 @@ describe('test Button Components', () => {
     render(<Button {...testProps}>Nice</Button>);
     const element = screen.getByText("Nice");
     expect(element).toBeInTheDocument();
-    expect(element).toHaveClass('btn btn-lg btn-primary class')
+    expect(element).toHaveClass(
+      "vanilla-btn vanilla-btn-lg vanilla-btn-primary class"
+    );
   })
   it('should render a link when btnType equals link and href is provided', () => {
     render(<Button btnType="link" href="https://demo.com">Link</Button>);
     const element = screen.getByText("Link");
     expect(element).toBeInTheDocument();
     expect(element.tagName).toEqual("A")
-    expect(element).toHaveClass("btn btn-link")
+    expect(element).toHaveClass("vanilla-btn vanilla-btn-link");
   })
   it('should render disabled button when disabled set to true', () => {
     render(<Button {...disabledProps}>Nice</Button>);

@@ -4,6 +4,15 @@ import { Menu, MenuProps } from "./menu";
 import { MenuItem } from "./menuItem";
 import { SubMenu } from "./subMenu";
 
+
+jest.mock("react-transition-group", () => {
+  return {
+    CSSTransition: (props: any) => {
+      return props.children;
+    },
+  }
+})
+
 const testProps: MenuProps = {
   defaultIndex: "0",
   onSelect: jest.fn(),
@@ -35,10 +44,10 @@ const generateMenu = (props: MenuProps) => {
 }
 const createStyleFile = () => {
   const cssFile: string = `
-    .submenu {
+    .vanilla-submenu {
       display: none;
     }
-    .submenu.menu-opened {
+    .vanilla-submenu.menu-opened {
       display:block;
     }
   `;
@@ -61,31 +70,31 @@ describe('test Menu and MenuItem component base on default props', () => {
     disabledElement = screen.getByText('disabled')
     
   })
-  it('1', () => {
-    expect(menuElement).toBeInTheDocument()
-    expect(menuElement).toHaveClass('menu test')
+  it("should render correct Menu and MenuItem based on default props", () => {
+    expect(menuElement).toBeInTheDocument();
+    expect(menuElement).toHaveClass("vanilla-menu test");
     // // eslint-disable-next-line testing-library/no-node-access
     // expect(menuElement.getElementsByTagName('li').length).toBe(3)
     // eslint-disable-next-line testing-library/no-node-access
-    expect(menuElement.querySelectorAll(':scope > li').length).toEqual(6);
-    expect(activeElement).toHaveClass('menu-item is-active')
-    expect(disabledElement).toHaveClass('menu-item is-disabled')
-  })
-  it("2", () => {
-    const thirdItem = screen.getByText('xyz')
-    fireEvent.click(thirdItem)
-    expect(thirdItem).toHaveClass('is-active')
-    expect(activeElement).not.toHaveClass('is-active')
-    expect(testProps.onSelect).toHaveBeenCalledWith("2") // 调用参数（"2"）
-    fireEvent.click(disabledElement)
-    expect(disabledElement).not.toHaveClass('is-active')
-    expect(testProps.onSelect).not.toHaveBeenCalledWith("1")
+    expect(menuElement.querySelectorAll(":scope > li").length).toEqual(6);
+    expect(activeElement).toHaveClass("menu-item is-active");
+    expect(disabledElement).toHaveClass("menu-item is-disabled");
   });
-  it("3", () => {
-    cleanup()
-    render(generateMenu(testVerProps))
-    const menuElement = screen.getByTestId('test-menu')
-    expect(menuElement).toHaveClass('menu-vertical')
+  it("click items should change active and call the right callback", () => {
+    const thirdItem = screen.getByText("xyz");
+    fireEvent.click(thirdItem);
+    expect(thirdItem).toHaveClass("is-active");
+    expect(activeElement).not.toHaveClass("is-active");
+    expect(testProps.onSelect).toHaveBeenCalledWith("2"); // 调用参数（"2"）
+    fireEvent.click(disabledElement);
+    expect(disabledElement).not.toHaveClass("is-active");
+    expect(testProps.onSelect).not.toHaveBeenCalledWith("1");
+  });
+  it("test Menu and MenuItem component in vertical mode", () => {
+    cleanup();
+    render(generateMenu(testVerProps));
+    const menuElement = screen.getByTestId("test-menu");
+    expect(menuElement).toHaveClass("menu-vertical");
   });
   it('should show dropdown items when hover on subMenu', async () => {
     expect(screen.queryByText("dropDownItem")).not.toBeVisible();
@@ -125,4 +134,3 @@ describe('test Menu and MenuItem component base on default props', () => {
     expect(screen.getByText("openItem")).toBeVisible();
   });
 })
-// TODO getByText,queryByText区别；优化测试描述与分类；解决container样式问题

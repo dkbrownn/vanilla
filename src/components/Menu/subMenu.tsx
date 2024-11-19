@@ -49,9 +49,9 @@ export const SubMenu = ({
   //纵向事件
   const clickEvents = context.mode === "vertical" ? { onClick: handleClick} : {}
   const renderChildren = () => {
-    const subMenuClasses = classNames('submenu', {
-      'menu-opened': menuOpen
-    })
+    const subMenuClasses = classNames("vanilla-submenu", {
+      "menu-opened": menuOpen,
+    });
     const childrenComponent = React.Children.map(children, (child, i) => {
       const childElement = child as React.FunctionComponentElement<MenuItemProps>
       if (childElement.type.displayName === 'MenuItem') {

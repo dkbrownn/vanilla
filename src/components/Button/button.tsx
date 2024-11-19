@@ -48,9 +48,9 @@ export const Button = ({
   className,
   ...restProps
 }: ButtonProps) => {
-  const classes = classNames("btn", className, {
-    [`btn-${btnType}`]: btnType,
-    [`btn-${size}`]: size,
+  const classes = classNames("vanilla-btn", className, {
+    [`vanilla-btn-${btnType}`]: btnType,
+    [`vanilla-btn-${size}`]: size,
     disabled: btnType === "link" && disabled,
   });
   if (btnType === "link" && href) {

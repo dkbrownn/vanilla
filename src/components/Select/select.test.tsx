@@ -1,9 +1,9 @@
 import React from "react";
 import { config } from "react-transition-group";
 import { render, fireEvent, screen } from "@testing-library/react";
-
 import { Select, SelectProps } from "./select";
 import { Option } from "./option";
+import { InputProps } from '../Input/input'
 config.disabled = true;
 
 jest.mock("../Icon/icon", () => {
@@ -12,9 +12,11 @@ jest.mock("../Icon/icon", () => {
   };
 });
 jest.mock("../Input/input", () => {
-  return React.forwardRef((props, ref: React.Ref<HTMLInputElement>) => (
-    <input ref={ref} {...props} />
-  ))
+  return {
+    Input: jest.fn((props: InputProps) => (
+      <input data-testid="mock-input" placeholder={props.placeholder} />
+    )),
+  };
 });
 const testProps: SelectProps = {
   defaultValue: "",
@@ -29,7 +31,7 @@ const multipleProps: SelectProps = {
 };
 describe("test Select component", () => {
   it("should render the correct Select component", () => {
-    render(
+    const {container} = render(
       <Select {...testProps}>
         <Option value="id1" label="nihao" />
         <Option value="id2" label="nihao2" />
@@ -37,6 +39,8 @@ describe("test Select component", () => {
       </Select>
     );
     const inputEle = screen.getByPlaceholderText("test") as HTMLInputElement;
+    // eslint-disable-next-line testing-library/no-debugging-utils
+    console.log(container);
     expect(inputEle).toBeInTheDocument();
     // click the input
     fireEvent.click(inputEle);
@@ -82,7 +86,7 @@ describe("test Select component", () => {
     expect(multipleProps.onChange).toHaveBeenCalledWith("id1", ["id1"]);
     // add tags
     // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-    expect(container.querySelectorAll(".viking-tag").length).toEqual(1);
+    expect(container.querySelectorAll(".vanilla-tag").length).toEqual(1);
     //remove placeholder
     expect(inputEle.placeholder).toEqual("");
     // click 2nd item
@@ -92,21 +96,21 @@ describe("test Select component", () => {
       "id2",
     ]);
     // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-    expect(container.querySelectorAll(".viking-tag").length).toEqual(2);
+    expect(container.querySelectorAll(".vanilla-tag").length).toEqual(2);
     //reclick 2nd item
     fireEvent.click(secondItem);
     // remove acitve class
     expect(secondItem).not.toHaveClass("is-selected");
     // remove tags
     // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-    expect(container.querySelectorAll(".viking-tag").length).toEqual(1);
+    expect(container.querySelectorAll(".vanilla-tag").length).toEqual(1);
     expect(multipleProps.onChange).toHaveBeenLastCalledWith("id2", ["id1"]);
     // click tag close
     fireEvent.click(screen.getByText("times"));
     expect(multipleProps.onChange).toHaveBeenLastCalledWith("id1", []);
     //remove all tags
     // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-    expect(container.querySelectorAll(".viking-tag").length).toEqual(0);
+    expect(container.querySelectorAll(".vanilla-tag").length).toEqual(0);
     //refill placeholder text
     expect(inputEle.placeholder).toEqual("test");
   });

@@ -10,9 +10,9 @@ export interface FormProps {
   initialValues?: Record<string, any>;
   children?: ReactNode | RenderProps;
   /** 提交表单且数据验证成功后回调事件 */
-  onFinsh?: (values: Record<string, any>) => void;
+  onFinish?: (values: Record<string, any>) => void;
   /** 提交表单且数据验证失败后回调事件 */
-  onFinshFailed?: (values: Record<string, any>, errors: ValidateError) => void;
+  onFinishFailed?: (values: Record<string, any>, errors: ValidateError) => void;
 }
 export type IFormContext = Pick<
   ReturnType<typeof useStore>,
@@ -28,8 +28,8 @@ export const Form = forwardRef<IFormRef, FormProps>(
       name = "vanilla-form",
       children,
       initialValues,
-      onFinsh,
-      onFinshFailed,
+      onFinish,
+      onFinishFailed,
     }: FormProps,
     ref
   ) => {
@@ -56,10 +56,10 @@ export const Form = forwardRef<IFormRef, FormProps>(
       e.preventDefault();
       e.stopPropagation();
       const { isVaild, errors, values } = await validateAllField();
-      if (isVaild && onFinsh) {
-        onFinsh(values);
-      } else if (!isVaild && onFinshFailed) {
-        onFinshFailed(values, errors);
+      if (isVaild && onFinish) {
+        onFinish(values);
+      } else if (!isVaild && onFinishFailed) {
+        onFinishFailed(values, errors);
       }
     };
     let childrenNode: ReactNode;

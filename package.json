@@ -58,6 +58,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
     "@chromatic-com/storybook": "^3.2.2",
     "@storybook/addon-actions": "^8.4.3",
     "@storybook/addon-essentials": "^8.4.2",
@@ -69,6 +71,7 @@
     "@storybook/react": "^8.4.2",
     "@storybook/react-webpack5": "^8.4.2",
     "@storybook/test": "^8.4.2",
+    "babel-jest": "^29.7.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint-plugin-storybook": "^0.11.0",
     "http-proxy-middleware": "^3.0.3",
@@ -84,7 +87,10 @@
   },
   "jest": {
     "transformIgnorePatterns": [
-      "node_modules/(?!(axios)/)"
-    ]
+      "/node_modules/(?!lodash-es|axios)"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   }
 }

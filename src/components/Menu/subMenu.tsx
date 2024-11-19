@@ -5,7 +5,7 @@ import { MenuItemProps } from './menuItem';
 import { Icon } from "../Icon/icon";
 import { Transition } from "../Transition/transition";
 
-interface SubMenuProps {
+export interface SubMenuProps {
   index?: string;
   /** 下拉菜单选项的内容 */
   title: string;

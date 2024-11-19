@@ -1,4 +1,4 @@
-.tabs-nav {
+.vanilla-tabs-nav {
   display: flex;
   flex-wrap: wrap;
   padding-left: 0;
@@ -45,6 +45,6 @@
   }  
 }
 
-.tabs-content {
+.vanilla-tabs-content {
   margin-top: $nav-tabs-content-margin;
 }

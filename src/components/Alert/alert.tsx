@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { Transition } from "../Transition/transition";
+import { Icon } from "../Icon/icon";
 export type AlertType = 'success' | 'default' | 'danger' | 'warning';
-interface AlertProps {
+export interface AlertProps {
   /** 自定义标题 */
   className?: string;
   /**
@@ -17,6 +18,8 @@ interface AlertProps {
   title?: string;
   /** 内容描述 */
   desc?: string;
+  /**关闭alert时触发的事件 */
+  onClose?: () => void;
 }
 // TODO 完善alert位置
 /**
@@ -29,28 +32,34 @@ interface AlertProps {
 export const Alert = ({
   className,
   close = true,
-  alType = 'default',
-  title = 'title',
-  desc
+  alType = "default",
+  title = "title",
+  desc,
+  onClose,
 }: AlertProps) => {
-  const classes = classNames("alt", className, {
-    [`alt-${alType}`]: alType,
+  const classes = classNames("vanilla-alert", className, {
+    [`vanilla-alert-${alType}`]: alType,
   });
-  const [hide, setHide] = useState<boolean | undefined>(false)
+  const [hide, setHide] = useState<boolean | undefined>(false);
   const handleClose = () => {
-    setHide(true)
-  }
+    if (onClose) {
+      onClose()
+    }
+    setHide(true);
+  };
   return (
     <Transition in={!hide} unmountOnExit timeout={300} animation="zoom-in-top">
       <div className={classes}>
-        {<p className="alt-title">{title} </p>}
-        {desc ? <p className="alt-desc">{desc}</p> : null}
+        {<p className="vanilla-alert-title">{title} </p>}
+        {desc ? <p className="vanilla-alert-desc">{desc}</p> : null}
         {close ? (
-          <span className="alt-close" onClick={handleClose}>
-            x
-          </span>
+          <Icon
+            className="vanilla-alert-close"
+            onClick={handleClose}
+            icon={"times"}
+          />
         ) : null}
       </div>
     </Transition>
   );
-}
+};

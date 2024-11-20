@@ -18,7 +18,7 @@ export interface AlertProps {
   title?: string;
   /** 内容描述 */
   desc?: string;
-  /**关闭alert时触发的事件 */
+  /** 关闭alert时触发的事件 */
   onClose?: () => void;
 }
 // TODO 完善alert位置

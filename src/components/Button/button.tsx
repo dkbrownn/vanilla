@@ -14,18 +14,17 @@ export type  BaseButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
 export interface ButtonProps extends BaseButtonProps {
   /**
-   * 类名
+   * 可以扩展的类名
    */
   className?: string;
-  /**是否禁用 */
+  /** 是否禁用 */
   disabled?: boolean;
-  /** How large should the button be? */
+  /** Button 的尺寸 */
   size?: ButtonSize;
   /**
    * 按钮类型，共有四种分别为 'primary' | 'default' | 'danger' | 'link'
    **/
   btnType?: ButtonType;
-  /** 子节点元素 */
   children?: React.ReactNode;
   /** 当按钮类型为link时，跳转的链接 */
   href?: string;

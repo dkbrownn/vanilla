@@ -22,6 +22,14 @@ interface IMenuContext {
     mode?: MenuMode;
     defaultOpenSubMenus?: string[];
 }
+/**
+ * 为网站提供导航功能的菜单。支持横向纵向两种模式，支持下拉菜单。
+ * ### 引用方法
+ *
+ * ~~~js
+ * import { Menu } from 'vanilla-react-dkbrownn'
+ * ~~~
+ */
 export declare const MenuContext: React.Context<IMenuContext>;
-export declare const Menu: ({ defaultIndex, className, mode, style, children, onSelect, defaultOpenSubMenus }: MenuProps) => React.JSX.Element;
+export declare const Menu: ({ defaultIndex, className, mode, style, children, onSelect, defaultOpenSubMenus }: MenuProps) => import("react/jsx-runtime").JSX.Element;
 export {};

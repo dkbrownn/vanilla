@@ -48,6 +48,10 @@ export interface UploadProps {
     children?: React.ReactNode;
 }
 /**
- *
+ * 通过点击或者拖拽上传文件
+ * ##引用方法
+ * ~~~js
+ * import { Upload } from "vanilla-react-dkbrownn"
+ * ~~~
  */
-export declare const Upload: ({ defultFileList, action, headers, name, data, withCredentials, accept, multiple, drag, beforeUpload, onError, onProgress, onSuccess, onChange, onRemove, children }: UploadProps) => React.JSX.Element;
+export declare const Upload: ({ defultFileList, action, headers, name, data, withCredentials, accept, multiple, drag, beforeUpload, onError, onProgress, onSuccess, onChange, onRemove, children }: UploadProps) => import("react/jsx-runtime").JSX.Element;

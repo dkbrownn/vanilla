@@ -34,9 +34,9 @@ export declare const SelectContext: React.Context<ISelectContext>;
  * ### 引用方法
  *
  * ~~~js
- * import { Select } from 'vanilla-react'
+ * import { Select } from 'vanilla-react-dkbrownn'
  * // 然后可以使用 <Select> 和 <Select.Option>
  * ~~~
  */
-export declare const Select: ({ defaultValue, placeholder, disabled, multiple, name, isShow, onChange, onVisibleChange, children }: SelectProps) => React.JSX.Element;
+export declare const Select: ({ defaultValue, placeholder, disabled, multiple, name, isShow, onChange, onVisibleChange, children }: SelectProps) => import("react/jsx-runtime").JSX.Element;
 export {};

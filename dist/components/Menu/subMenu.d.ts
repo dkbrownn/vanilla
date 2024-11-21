@@ -8,6 +8,6 @@ export interface SubMenuProps {
     children?: React.ReactNode;
 }
 export declare const SubMenu: {
-    ({ index, title, className, children }: SubMenuProps): React.JSX.Element;
+    ({ index, title, className, children }: SubMenuProps): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };

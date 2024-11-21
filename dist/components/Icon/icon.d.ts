@@ -1,4 +1,3 @@
-import React from "react";
 import { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 import { SizeProp, IconProp } from "@fortawesome/fontawesome-svg-core";
 export type ThemeProps = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger' | 'light' | 'dark';
@@ -26,7 +25,7 @@ export interface IconProps extends FontAwesomeIconProps {
  *
  * ##引用方法
  * ~~~js
- * import { Icon } from "vanilla-react"
+ * import { Icon } from "vanilla-react-dkbrownn"
  * ~~~
  */
-export declare const Icon: ({ theme, className, ...restProps }: IconProps) => React.JSX.Element;
+export declare const Icon: ({ theme, className, ...restProps }: IconProps) => import("react/jsx-runtime").JSX.Element;

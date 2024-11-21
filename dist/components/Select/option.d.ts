@@ -10,6 +10,6 @@ export interface OptionProps {
     children?: React.ReactNode;
 }
 export declare const Option: {
-    ({ index, value, label, disabled, children }: OptionProps): React.JSX.Element;
+    ({ index, value, label, disabled, children }: OptionProps): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };

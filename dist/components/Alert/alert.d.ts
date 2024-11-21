@@ -1,4 +1,3 @@
-import React from "react";
 export type AlertType = 'success' | 'default' | 'danger' | 'warning';
 export interface AlertProps {
     /** 自定义标题 */
@@ -22,7 +21,7 @@ export interface AlertProps {
  *  用于页面中展示重要的提示信息。 点击右侧的叉提示自动消失
  * ##引用方法
  * ~~~js
- * import { Alert } from "vanilla-react"
+ * import { Alert } from "vanilla-react-dkbrownn"
  * ~~~
  */
-export declare const Alert: ({ className, close, alType, title, desc, onClose, }: AlertProps) => React.JSX.Element;
+export declare const Alert: ({ className, close, alType, title, desc, onClose, }: AlertProps) => import("react/jsx-runtime").JSX.Element;

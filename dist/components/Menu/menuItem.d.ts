@@ -10,6 +10,6 @@ export interface MenuItemProps {
     children?: React.ReactNode;
 }
 export declare const MenuItem: {
-    ({ index, disabled, className, style, children }: MenuItemProps): React.JSX.Element;
+    ({ index, disabled, className, style, children }: MenuItemProps): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };

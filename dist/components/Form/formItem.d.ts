@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { CustomRule } from "./useStore";
 export interface FormItemProps {
     /** 字段名 */
@@ -17,4 +17,4 @@ export interface FormItemProps {
     /** 设置字段校验的时机 */
     validateTrigger?: string;
 }
-export declare const FormItem: ({ name, label, children, rules, valuePropName, validateTrigger, trigger, getValueFromEvent }: FormItemProps) => React.JSX.Element;
+export declare const FormItem: ({ name, label, children, rules, valuePropName, validateTrigger, trigger, getValueFromEvent }: FormItemProps) => import("react/jsx-runtime").JSX.Element;

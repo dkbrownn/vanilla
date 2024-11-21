@@ -1,4 +1,3 @@
-import React from "react";
 import { UploadFile } from "./upload";
 interface UploadListProps {
     /** 上传文件数组 */
@@ -6,5 +5,5 @@ interface UploadListProps {
     /** 删除 */
     onRemove: (_file: UploadFile) => void;
 }
-export declare const UploadList: ({ fileList, onRemove }: UploadListProps) => React.JSX.Element;
+export declare const UploadList: ({ fileList, onRemove }: UploadListProps) => import("react/jsx-runtime").JSX.Element;
 export {};

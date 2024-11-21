@@ -16,4 +16,4 @@ export interface ProgressProps {
     /** 处理鼠标控制进度 */
     mouseMove?: (e: React.MouseEvent) => void;
 }
-export declare const Progress: ({ touch, showText, percent, strokeHeight, styles, theme }: ProgressProps) => React.JSX.Element;
+export declare const Progress: ({ touch, showText, percent, strokeHeight, styles, theme }: ProgressProps) => import("react/jsx-runtime").JSX.Element;

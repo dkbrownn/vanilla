@@ -6,5 +6,5 @@ export type TransitionProps = CSSTransitionProps & {
     children?: React.ReactNode;
     wrapper?: boolean;
 };
-export declare const Transition: ({ children, classNames, animation, appear, wrapper, unmountOnExit, ...restProps }: TransitionProps) => React.JSX.Element;
+export declare const Transition: ({ children, classNames, animation, appear, wrapper, unmountOnExit, ...restProps }: TransitionProps) => import("react/jsx-runtime").JSX.Element;
 export {};

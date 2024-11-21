@@ -20,7 +20,7 @@ import { Button } from 'vanilla-react-dkbrown'
 * 🎉提供 husky提交发布前验证，travis CI/CD 集成等
 
 ###本地开发命令
-``bash
+```bash
 #安装项目依赖
 npm install
 

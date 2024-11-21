@@ -15,18 +15,18 @@ const defaultFileList: UploadFile[] = [
   { uid: "1239", size: 1239, name: "hyx.md", status: "success"}
 ]
 
-const checkFileSize = (file: File) => {
-  if (Math.round(file.size / 1024 ) > 50) {
-    alert("file too big") 
-    return false
-  }
-  return true
-}
+// const checkFileSize = (file: File) => {
+//   if (Math.round(file.size / 1024 ) > 50) {
+//     alert("file too big") 
+//     return false
+//   }
+//   return true
+// }
 
-const filePromise = (file: File) => {
-  const newFile = new File([file], "new_name.docx", {type: file.type})
-  return Promise.resolve(newFile)
-}
+// const filePromise = (file: File) => {
+//   const newFile = new File([file], "new_name.docx", {type: file.type})
+//   return Promise.resolve(newFile)
+// }
 export default meta
 export const DefaultType: StoryFn<typeof Upload> = () => (
   

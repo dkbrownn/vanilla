@@ -50,7 +50,11 @@ export interface UploadProps {
   children?: React.ReactNode;
 }
 /**
- * 
+ * 通过点击或者拖拽上传文件
+ * ##引用方法
+ * ~~~js
+ * import { Upload } from "vanilla-react-dkbrownn"
+ * ~~~
  */
 export const Upload = ({
   defultFileList,

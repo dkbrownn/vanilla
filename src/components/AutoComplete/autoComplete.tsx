@@ -29,6 +29,13 @@ export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
   /** 自定义渲染结果 */
   renderOptions?: (item: DataSourceProps) => React.ReactElement;
 }
+/**
+ *  输入框自动完成功能。当输入值需要自动完成时使用，支持同步和异步两种方式 支持 Input 组件的所有属性 支持键盘事件选择
+ * ##引用方法
+ * ~~~js
+ * import { AutoComplete  } from "vanilla-react-dkbrownn"
+ * ~~~
+ */
 export const AutoComplete = ({
   fetchSuggestios,
   onSelect,

@@ -3,7 +3,6 @@ import { config } from "react-transition-group";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { Select, SelectProps } from "./select";
 import { Option } from "./option";
-import { InputProps } from '../Input/input'
 config.disabled = true;
 
 jest.mock("../Icon/icon", () => {
@@ -11,15 +10,8 @@ jest.mock("../Icon/icon", () => {
     return <span onClick={props.onClick}>{props.icon}</span>;
   };
 });
-jest.mock("../Input/input", () => {
-  return {
-    Input: jest.fn((props: InputProps) => (
-      <input data-testid="mock-input" placeholder={props.placeholder} />
-    )),
-  };
-});
+
 const testProps: SelectProps = {
-  defaultValue: "",
   placeholder: "test",
   onChange: jest.fn(),
   onVisibleChange: jest.fn(),
@@ -30,7 +22,7 @@ const multipleProps: SelectProps = {
   multiple: true,
 };
 describe("test Select component", () => {
-  it("should render the correct Select component", () => {
+  it("should render the correct Select component", async () => {
     const {container} = render(
       <Select {...testProps}>
         <Option value="id1" label="nihao" />

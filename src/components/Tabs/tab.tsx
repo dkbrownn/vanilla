@@ -22,7 +22,7 @@ export interface TabsProps {
  * ### 引用方法
  * 
  * ~~~js
- * import { Tabs } from 'vanilla-react'
+ * import { Tabs } from 'vanilla-react-dkbrownn'
  * ~~~
  */
 export const Tabs: React.FC<TabsProps> = ({

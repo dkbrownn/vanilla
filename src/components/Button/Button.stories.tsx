@@ -1,6 +1,5 @@
 import { StoryObj, Meta, StoryFn } from "@storybook/react/*";
 import { Button, ButtonProps } from "./button";
-import { action } from '@storybook/addon-actions'
 const meta = {
   title: "Button组件",
   component: Button,
@@ -9,7 +8,6 @@ const meta = {
   },
 } satisfies Meta<ButtonProps>;
 export default meta
-type Story = StoryObj<ButtonProps>;
 
 const Template: StoryFn<ButtonProps> = () => (
   <>

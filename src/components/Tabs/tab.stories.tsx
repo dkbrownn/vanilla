@@ -11,8 +11,7 @@ const meta = {
 } satisfies Meta<typeof Tabs>
 
 export default meta
-type Story = StoryObj<typeof Tabs>
-const items = ["line", "card", "disabled"]
+
 export const AllTypesTabs: StoryFn<typeof Tabs> = () => (
   <>
     <Tabs type="line" defaultIndex={0}>

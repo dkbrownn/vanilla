@@ -62,7 +62,7 @@ describe('test AutoComplete component', () => {
     await waitFor(() => {
       expect(screen.getByText("ab")).toBeInTheDocument();
     });
-    fireEvent.click(document);
+    fireEvent.click(document.body);
     expect(screen.queryByText("ab")).not.toBeInTheDocument();
   });
   it('async fetchSuggestions should works fine', async () => {

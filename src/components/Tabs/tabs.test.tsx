@@ -50,7 +50,6 @@ describe("test Tabs Component", () => {
     expect(testProps.onSelect).toHaveBeenCalledWith(0);
   });
   it("click disabled tabItem should not works", () => {
-    const { getByText } = wrapper;
     const disableElement = screen.getByText("disabled");
     expect(disableElement).toHaveClass("disabled");
     fireEvent.click(disableElement);

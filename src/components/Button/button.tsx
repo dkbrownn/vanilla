@@ -35,7 +35,7 @@ export interface ButtonProps extends BaseButtonProps {
  * 页面中最常用的的按钮元素，适合于完成特定的交互，支持 HTML button 和 a 链接 的所有属性
  * ##引用方法
  * ~~~js
- * import { Button } from "vanilla-react"
+ * import { Button } from "vanilla-react-dkbrownn"
  * ~~~
  */
 export const Button = ({

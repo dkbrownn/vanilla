@@ -127,35 +127,35 @@ export const useStore = (initialValues?: Record<string, any>) => {
       dispatch({type: "updateValidateResult", name, value: {isVaild, errors}})
     }
   }
-  const test = async (
-    name: string,
-    errorsArray: Record<string, ValidateError[]>
-  ) => {
-    const { value, rules } = fields[name];
-    const afterRules = transformRules(rules);
-    const descroptor = {
-      [name]: afterRules,
-    };
-    const valueMap = {
-      [name]: value,
-    };
-    const validator = new Schema(descroptor);
-    // const result = await validator.validate(valueMap).then(res =>
-    //  { console.log("res", res)
-    //   return res
-    //  }).catch(err => {
-    //     console.log("err1",err.errors)
-    //     return err.errors
-    //   });
-    console.log(descroptor, valueMap);
-    try {
-      await validator.validate(valueMap);
-    } catch (e) {
-      const err = e as ValidateErrorType;
-      console.log(err.errors);
-      errorsArray[name] = err.errors;
-    }
-  };
+  // const test = async (
+  //   name: string,
+  //   errorsArray: Record<string, ValidateError[]>
+  // ) => {
+  //   const { value, rules } = fields[name];
+  //   const afterRules = transformRules(rules);
+  //   const descroptor = {
+  //     [name]: afterRules,
+  //   };
+  //   const valueMap = {
+  //     [name]: value,
+  //   };
+  //   const validator = new Schema(descroptor);
+  //   // const result = await validator.validate(valueMap).then(res =>
+  //   //  { console.log("res", res)
+  //   //   return res
+  //   //  }).catch(err => {
+  //   //     console.log("err1",err.errors)
+  //   //     return err.errors
+  //   //   });
+  //   console.log(descroptor, valueMap);
+  //   try {
+  //     await validator.validate(valueMap);
+  //   } catch (e) {
+  //     const err = e as ValidateErrorType;
+  //     console.log(err.errors);
+  //     errorsArray[name] = err.errors;
+  //   }
+  // };
   const validateAllField = async () => {
     // let errorsArray: Record<string, ValidateError[]> = {}
     // await each(fields, async ({ name }) => {

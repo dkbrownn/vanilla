@@ -26,7 +26,7 @@ export interface AlertProps {
  *  用于页面中展示重要的提示信息。 点击右侧的叉提示自动消失
  * ##引用方法
  * ~~~js
- * import { Alert } from "vanilla-react"
+ * import { Alert } from "vanilla-react-dkbrownn"
  * ~~~
  */
 export const Alert = ({

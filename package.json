@@ -48,7 +48,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o ./storybook-static",
     "prepublishOnly": "npm run build",
-    "lint": "eslint --ext js,ts,tsx src"
+    "lint": "eslint --ext js,ts,tsx src  --max-warnings 5"
   },
   "husky": {
     "hooks": {

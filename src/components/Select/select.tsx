@@ -45,14 +45,14 @@ export const SelectContext = createContext<ISelectContext>({
  * ### 引用方法
  * 
  * ~~~js
- * import { Select } from 'vanilla-react'
+ * import { Select } from 'vanilla-react-dkbrownn'
  * // 然后可以使用 <Select> 和 <Select.Option>
  * ~~~
  */
 export const Select = ({
   defaultValue,
   placeholder,
-  disabled,
+  disabled = false,
   multiple,
   name,
   isShow = false,
@@ -62,6 +62,7 @@ export const Select = ({
 }: SelectProps) => {
   const containerRef = useRef<HTMLInputElement>(null)
   const input = useRef<HTMLInputElement>(null);
+  const containerWidth = useRef(0);
   const [menuOpen, setMenuOpen] = useState(false)
   const [value, setValue] = useState<string>(typeof defaultValue === "string" ? defaultValue : "");
   const [ selectedValues, setSelectedValues ] = useState<string[]>(Array.isArray(defaultValue)? defaultValue :[])
@@ -107,7 +108,11 @@ export const Select = ({
       }
     }
   }, [selectedValues, multiple, placeholder]);
-
+useEffect(() => {
+  if (containerRef.current) {
+    containerWidth.current = containerRef.current.getBoundingClientRect().width;
+  }
+});
   const wrapperClasses = classNames("vanilla-select", {
     "menu-is-open": menuOpen,
     "is-disabled": disabled,
@@ -147,20 +152,24 @@ export const Select = ({
   }
   return (
     <div className={wrapperClasses} ref={containerRef}>
-      { isShow && <div
-        className="show-wrapper"
-        style={{
-          padding: ".5rem",
-        }}
-      >
-        当前值：
-        {!multiple ? (
-          <span>{value}</span>
-        ) : (
-          selectedValues.map((value, index) => <span key={index}>{value}</span>)
-        )}
-      </div>}
-      <div className="vanilla-select-input">
+      {isShow && (
+        <div
+          className="show-wrapper"
+          style={{
+            padding: ".5rem",
+          }}
+        >
+          当前值：
+          {!multiple ? (
+            <span>{value}</span>
+          ) : (
+            selectedValues.map((value, index) => (
+              <span key={index}>{value}</span>
+            ))
+          )}
+        </div>
+      )}
+      <div className="vanilla-select-input" onClick={handleClick}>
         <Input
           ref={input}
           disabled={disabled}
@@ -169,7 +178,6 @@ export const Select = ({
           value={value}
           name={name}
           icon={"angle-down"}
-          onClick={handleClick}
         />
         {multiple && (
           <div className="vanilla-selected-tags">

@@ -1,4 +1,4 @@
-import { StoryObj, Meta, StoryFn } from "@storybook/react/*";
+import { Meta, StoryFn } from "@storybook/react/*";
 import { Icon } from "./icon";
 const meta = {
   title: "Icon组件",
@@ -8,7 +8,6 @@ const meta = {
   },
 } satisfies Meta<typeof Icon>;
 export default meta;
-type Story = StoryObj<typeof Icon>;
 export const ThemeIcon: StoryFn = () => (
   <>
     <Icon icon={"coffee"} theme="danger" />

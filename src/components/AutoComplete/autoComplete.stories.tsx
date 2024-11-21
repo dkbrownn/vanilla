@@ -1,5 +1,5 @@
 import React from "react";
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { AutoComplete } from "./autoComplete";
 import { Input } from "../Input/input";
 import { DataSourceProps } from './autoComplete';

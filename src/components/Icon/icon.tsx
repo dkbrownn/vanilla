@@ -27,7 +27,7 @@ export interface IconProps extends FontAwesomeIconProps {
  * 
  * ##引用方法
  * ~~~js
- * import { Icon } from "vanilla-react"
+ * import { Icon } from "vanilla-react-dkbrownn"
  * ~~~
  */
 export const Icon = ({

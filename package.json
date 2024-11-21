@@ -46,7 +46,7 @@
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build -o ./storybook-static",
     "prepublishOnly": "npm run build",
     "lint": "eslint --ext js,ts,tsx src"
   },
